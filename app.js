@@ -1,4 +1,5 @@
 "use strict";
+require("dotenv").config();
 
 const express = require("express");
 const path = require("path");
@@ -13,11 +14,13 @@ const index = require("./routes/index");
 const app = express();
 
 mongoose.Promise = Promise;
-mongoose.connect("mongodb://localhost/lab-express-file-upload", {
-  keepAlive: true,
-  reconnectTries: Number.MAX_VALUE,
-  useMongoClient: true
-});
+mongoose.connect(
+  mongoose.connect(process.env.MONGODB_URI, {
+    keepAlive: true,
+    reconnectTries: Number.MAX_VALUE,
+    useMongoClient: true
+  })
+);
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
