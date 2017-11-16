@@ -1,6 +1,5 @@
 "use strict";
 require("dotenv").config();
-
 const express = require("express");
 const path = require("path");
 const logger = require("morgan");
@@ -13,13 +12,11 @@ const index = require("./routes/index");
 const app = express();
 
 mongoose.Promise = Promise;
-mongoose.connect(
-  mongoose.connect(process.env.MONGODB_URI, {
-    keepAlive: true,
-    reconnectTries: Number.MAX_VALUE,
-    useMongoClient: true
-  })
-);
+mongoose.connect(process.env.MONGODB_URI, {
+  keepAlive: true,
+  reconnectTries: Number.MAX_VALUE,
+  useMongoClient: true
+});
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
